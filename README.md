@@ -11,11 +11,11 @@ It works on Wayland and likely Xorg, though it has not been tested with the latt
 
 Since it uses IBus, it should work with most if not all applications since most modern toolkits (GTK, QT) all support IBus.
 
-It has been tested with French and, to a lesser extent, with English but it should support all languages for which a voice recognition model is available on this page : https://alphacephei.com/VOSK/models
+It has been tested with French, English and Spanish but it should support all languages for which a voice recognition model is available on this page : https://alphacephei.com/VOSK/models
 
 Note: you do not need to install the model manually, the setup tool can do it for you and lets you choose the model you want for your language (larger models tend to be more accurate of course but can require a lot of memory).
 
-When there is a formatting file provided, IBus STT auto-formats the text that VOSK outputs (mainly adding spaces and capital letters when needed). Currently, such a file is only provided for French and American English but you can send me a new file for your language so I can integrate it (see the examples in data/formatting in the tree).
+When there is a formatting file provided, IBus STT auto-formats the text that VOSK outputs (mainly adding spaces and capital letters when needed). Currently, such a file is provided for French, American English and Spanish (es_ES) but you can send me a new file for your language so I can integrate it (see the examples in data/formatting in the tree).
 
 This file also adds support for voice commands to manage case, punctuation and diacritics.
 For example, saying "capital letter california" yields "California" as a result and "comma" adds ",".
@@ -30,7 +30,7 @@ John Doe"
 
 See the setup tool.
 
-Finally, if your language is supported, IBus STT can format numbers as digits. Only French and English were tested but it should work with more languages (see the examples in data/numbers in the tree).  
+Finally, if your language is supported, IBus STT can format numbers as digits. French, English and Spanish were tested but it should work with more languages (see the examples in data/numbers in the tree).
 
 Dependencies
 ============
