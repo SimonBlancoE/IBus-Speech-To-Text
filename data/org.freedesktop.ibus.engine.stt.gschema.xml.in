@@ -41,5 +41,15 @@
       <default>'None'</default>
       <description>A JSON formatted string that is used to associate locales with a formatting file (used for automatic formatting of output). It is a custom path or nothing for defaut path.</description>
     </key>
+    <key type="s" name="stt-backend">
+      <summary>Speech recognition backend</summary>
+      <default>'vosk'</default>
+      <description>The speech recognition backend to use. Possible values are 'vosk' (default, uses gst-vosk plugin) and 'whisper' (uses faster-whisper, requires the faster-whisper and numpy Python packages).</description>
+    </key>
+    <key type="s" name="whisper-model-size">
+      <summary>Whisper model size</summary>
+      <default>'base'</default>
+      <description>The Whisper model size to use. Possible values are 'tiny', 'base', 'small', 'medium', 'large-v2', 'large-v3'. Larger models are more accurate but require more memory and processing time. Only used when stt-backend is set to 'whisper'.</description>
+    </key>
   </schema>
 </schemalist>

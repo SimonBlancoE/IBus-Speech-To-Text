@@ -1,11 +1,11 @@
 # IBus Speech To Text Input Method
-A speech to text IBus Input Method using VOSK, written in Python. When enabled, you can dictate text to any application supporting IBus (most if not all applications do).
+A speech to text IBus Input Method using VOSK or Whisper, written in Python. When enabled, you can dictate text to any application supporting IBus (most if not all applications do).
 
 Description
 ============
 
-This Input Method uses VOSK (https://github.com/alphacep/VOSK-api) for voice recognition and allows to dictate text in several languages in any application that supports IBus.
-One of the main adavantages is that VOSK performs voice recognition locally and does not rely on an online service.
+This Input Method uses VOSK (https://github.com/alphacep/VOSK-api) or Whisper (via faster-whisper) for voice recognition and allows to dictate text in several languages in any application that supports IBus.
+One of the main advantages is that both backends perform voice recognition locally and do not rely on an online service.
 
 It works on Wayland and likely Xorg, though it has not been tested with the latter.
 
@@ -46,7 +46,11 @@ The setup dialog depends on:
 - libadwaita 1.1.0
 - Gtk 4
 
-You also need gst-VOSK installed (https://github.com/PhilippeRo/gst-VOSK/).
+For the VOSK backend (default), you also need gst-VOSK installed (https://github.com/PhilippeRo/gst-VOSK/).
+
+For the Whisper backend, you need:
+- faster-whisper (https://github.com/SYSTRAN/faster-whisper): `pip install faster-whisper`
+- numpy: `pip install numpy` (usually installed as a dependency of faster-whisper)
 
 Building
 ============
@@ -66,3 +70,24 @@ Activate the Input Method through the IBus menu (that depends on your desktop) a
 It might seem obvious but the quality of the microphone used largely influences the accuracy of the voice recognition.
 
 This Input Method can also be enabled and disabled with the default shorcut ("Win + Space") used to switch between IBus Input Methods. By default, when IBus STT is enabled, voice recognition is not started immediately but there is a setting to change this behaviour. If enabled, you can start and stop voice recognition with the above shortcut.
+
+Choosing a backend
+============
+
+By default, IBus STT uses the VOSK backend. To switch to the Whisper backend:
+
+```
+  gsettings set org.freedesktop.ibus.engine.stt stt-backend 'whisper'
+```
+
+To switch back to VOSK:
+```
+  gsettings set org.freedesktop.ibus.engine.stt stt-backend 'vosk'
+```
+
+You can also choose the Whisper model size (tiny, base, small, medium, large-v2, large-v3). Larger models are more accurate but require more memory and processing time:
+```
+  gsettings set org.freedesktop.ibus.engine.stt whisper-model-size 'base'
+```
+
+Note: after changing the backend or model size, you need to restart IBus (`ibus restart`) for the change to take effect. The Whisper model is downloaded automatically on first use.

@@ -4,6 +4,7 @@ stt_sources = [
     'sttenginefactory.py',
     'sttengine.py',
     'sttgstvosk.py',
+    'sttgstwhisper.py',
     'sttgstfactory.py',
     'sttgstbase.py',
     'sttsegmentprocess.py',
