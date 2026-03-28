@@ -1,0 +1,215 @@
+{
+    "description" : {
+        "name" : "Español (España)",
+        "locale" : "es_ES",
+        "comment" : "Archivo de formateo para español"
+    },
+    "language" : {
+        "no space after" : " ([{«¿¡@\n\t-",
+        "no space before" : " ….,)]}»'-\t\n",
+        "capitalize next" : ".?!…",
+        "digits" : {
+            "uno" : "1",
+            "dos" : "2",
+            "tres" : "3",
+            "cuatro" : "4",
+            "cinco" : "5",
+            "seis" : "6",
+            "siete" : "7",
+            "ocho" : "8",
+            "nueve" : "9",
+            "cero" : "0"
+         }
+    },
+    "custom" : [{
+        "shortcut": "Control+v",
+        "description": "Pegar el texto",
+        "utterances": ["pegar el texto", "pegar texto", "pega el texto"]
+    }, {
+        "shortcut": "Control+BackSpace",
+        "description": "Borrar la palabra a la izquierda",
+        "utterances": ["borrar palabra", "borra la palabra"]
+    }, {
+        "shortcut": "Control+z",
+        "description": "Deshacer la última acción",
+        "utterances": ["estado anterior", "deshacer"]
+    }, {
+        "shortcut": "Return",
+        "description": "Validar (= pulsar 'Enter')",
+        "utterances": ["validar", "aceptar", "enter"]
+    }, {
+        "shortcut": "Shift+Control+Delete",
+        "description": "Borrar la línea",
+        "utterances": ["borrar la línea", "borra la línea"]
+    }, {
+        "shortcut": "Control+c",
+        "description": "Copiar",
+        "utterances": ["copiar texto", "copia el texto"]
+    }, {
+        "shortcut": "Control+x",
+        "description": "Cortar",
+        "utterances": ["cortar texto", "corta el texto"]
+    }, {
+        "shortcut": "Control+a",
+        "description": "Seleccionar todo",
+        "utterances": ["seleccionar todo", "selecciona todo"]
+    }],
+    "commands" : [{
+        "value" : "digits",
+        "utterances" : ["modo numérico", "usar dígitos"],
+        "description" : "Activar el modo numérico"
+        }, {
+        "value" : "spelling",
+        "utterances" : ["modo deletreo", "empezar a deletrear", "deletrear"],
+        "description" : "Empezar a deletrear"
+        }, {
+        "value" : "dictation",
+        "utterances" : ["empezar dictado", "comenzar dictado", "modo dictado", "dictado"],
+        "description" : "Empezar a dictar"
+        }, {
+        "value" : "literal",
+        "utterances" : ["dictado sin formato", "empezar dictado sin formato", "dictar sin formato"],
+        "description" : "Dictar sin formateo automático"
+        }, {
+        "value" : "cancel",
+        "utterances" : ["cancelar", "anular"],
+        "description" : "Cancelar el último enunciado"
+        }],
+    "case" : [{
+        "value" : "upper all",
+        "utterances" :["todo en mayúsculas", "todo mayúsculas"],
+        "description" : "Poner todo en mayúsculas"
+        }, {
+        "value" : "upper",
+        "utterances" : ["en mayúsculas", "palabra en mayúsculas"],
+        "description" : "Poner la siguiente palabra en mayúsculas"
+        }, {
+        "value" : "title",
+        "utterances" : ["primera letra en mayúscula", "primeras letras en mayúscula"],
+        "description" : "Poner las primeras letras en mayúscula"
+        }, {
+        "value" : "capitalize",
+        "utterances" : "mayúscula",
+        "description" : "Letra mayúscula"
+        }, {
+        "value" : "lower",
+        "utterances" : "minúscula",
+        "description" : "Letra minúscula"
+        }],
+    "diacritics" :[{
+        "value" : ["\u00B4", "\u0301"],
+        "utterances" : ["acento", "tilde"]
+        }, {
+        "value" : ["\u00A8", "\u0308"],
+        "utterances" : ["diéresis"]
+        }, {
+        "value" : ["\u007E", "\u0303"],
+        "utterances" : ["virgulilla", "eñe"]
+        }],
+    "punctuation" : [{
+        "value" : "@",
+        "utterances" : ["arroba"]
+        }, {
+        "value" : "\t",
+        "utterances" : "tabulación",
+        "description" : "Tabulación"
+        }, {
+        "value" : ",",
+        "utterances" : "coma"
+        }, {
+        "value" : "…",
+        "utterances" : ["puntos suspensivos", "tres puntos"]
+        }, {
+        "value" : ".",
+        "utterances" : ["punto", "punto final"]
+        }, {
+        "value" : ";",
+        "utterances" : ["punto y coma"]
+        }, {
+        "value" : ":",
+        "utterances" : "dos puntos"
+        }, {
+        "value" : "!",
+        "utterances" : ["signo de exclamación", "exclamación", "cierra exclamación"]
+        }, {
+        "value" : "¡",
+        "utterances" : ["abre exclamación", "abrir exclamación"]
+        }, {
+        "value" : "?",
+        "utterances" : ["signo de interrogación", "interrogación", "cierra interrogación"]
+        }, {
+        "value" : "¿",
+        "utterances" : ["abre interrogación", "abrir interrogación"]
+        }, {
+        "value" : " ",
+        "utterances" : "espacio",
+        "description" : "Espacio"
+        }, {
+        "value" : "\n",
+        "utterances" : ["nueva línea", "salto de línea"],
+        "description" : "Nueva línea"
+        }, {
+        "value" : "[",
+        "utterances" : ["abrir corchete"]
+        }, {
+        "value" : "(",
+        "utterances" : ["abrir paréntesis"]
+        }, {
+        "value" : "{",
+        "utterances" : ["abrir llave"]
+        }, {
+        "value" : "«",
+        "utterances" : ["abrir comillas", "abrir guillemets"]
+        }, {
+        "value" : "]",
+        "utterances" : ["cerrar corchete"]
+        }, {
+        "value" : ")",
+        "utterances" : ["cerrar paréntesis"]
+        }, {
+        "value" : "}",
+        "utterances" : ["cerrar llave"]
+        }, {
+        "value" : "»",
+        "utterances" : ["cerrar comillas", "cerrar guillemets"]
+        }, {
+        "value" : "\"",
+        "utterances" : ["comillas dobles"]
+        }, {
+        "value" : "'",
+        "utterances" : ["comillas simples", "apóstrofo"]
+        }, {
+        "value" : "+",
+        "utterances" : "signo más"
+        }, {
+        "value" : "-",
+        "utterances" : "signo menos"
+        }, {
+        "value" : "=",
+        "utterances" : "signo igual"
+        }, {
+        "value" : "–",
+        "utterances" : ["guion", "guión"]
+        }, {
+        "value" : "_",
+        "utterances" : ["guion bajo", "guión bajo"]
+        }, {
+        "value" : "#",
+        "utterances" : ["almohadilla", "numeral"]
+        }, {
+        "value" : "\/",
+        "utterances" : "barra"
+        }, {
+        "value" : "\\",
+        "utterances" : ["barra invertida", "barra inversa"]
+        }, {
+        "value" : "*",
+        "utterances" : "asterisco"
+        }, {
+        "value" : "&",
+        "utterances" : "ampersand"
+        }, {
+        "value" : "%",
+        "utterances" : ["porcentaje", "signo de porcentaje"]
+    }]
+}
