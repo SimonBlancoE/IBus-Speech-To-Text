@@ -26,10 +26,8 @@ import gi
 
 gi.require_version('IBus', '1.0')
 gi.require_version('Pango', '1.0')
-gi.require_version('Gtk', '4.0')
 
 from gi.repository import IBus
-from gi.repository import Gtk, Adw
 from gi.repository import Gio
 
 from sttutils import *
@@ -364,17 +362,24 @@ class STTEngine(IBus.Engine):
         elif prop_name == 'configuration':
             subprocess.Popen([os.path.join(stt_utils_get_libexec(), "ibus-setup-stt")])
         elif prop_name == 'about':
-            dialog = Adw.AboutWindow(application_name=_("IBus Speech To Text"),
-                            title=_("About IBus Speech To Text"),
-                            application_icon="user-available-symbolic",
-                            version=stt_utils_get_version(),
-                            copyright="Copyright © 2022 Philippe Rouquier",
-                            comments=_("What you say is always write."),
-                            website="https://github.com/PhilippeRo/IBus-Speech-To-Text",
-                            issue_url="https://github.com/PhilippeRo/IBus-Speech-To-Text/issues",
-                            license_type=Gtk.License.GPL_3_0,
-                            translator_credits=_("translator-credits"))
-            dialog.present()
+            try:
+                gi.require_version('Gtk', '4.0')
+                gi.require_version('Adw', '1')
+                from gi.repository import Gtk, Adw
+                Adw.init()
+                dialog = Adw.AboutWindow(application_name=_("IBus Speech To Text"),
+                                title=_("About IBus Speech To Text"),
+                                application_icon="user-available-symbolic",
+                                version=stt_utils_get_version(),
+                                copyright="Copyright \u00a9 2022 Philippe Rouquier",
+                                comments=_("What you say is always write."),
+                                website="https://github.com/PhilippeRo/IBus-Speech-To-Text",
+                                issue_url="https://github.com/PhilippeRo/IBus-Speech-To-Text/issues",
+                                license_type=Gtk.License.GPL_3_0,
+                                translator_credits=_("translator-credits"))
+                dialog.present()
+            except Exception as e:
+                LOG_MSG.error("Could not show About dialog: %s", e)
 
     def _need_results(self, text_process):
         if self._preediting == True:

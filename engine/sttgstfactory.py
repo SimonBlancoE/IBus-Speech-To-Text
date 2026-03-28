@@ -41,11 +41,26 @@ class STTGstFactory(GObject.GObject):
         self.__settings.connect("changed::preload", self.__preload_changed)
         self.__update_preloaded_engine()
 
+    def _create_engine(self):
+        backend=self.__settings.get_string("stt-backend")
+        if backend == "whisper":
+            try:
+                from sttgstwhisper import STTGstWhisper
+                LOG_MSG.info("creating Whisper engine")
+                return STTGstWhisper()
+            except ImportError:
+                LOG_MSG.error("Whisper backend unavailable (missing faster-whisper or numpy), falling back to Vosk")
+            except Exception as e:
+                LOG_MSG.error("Failed to create Whisper engine (%s), falling back to Vosk", e)
+
+        LOG_MSG.info("creating Vosk engine")
+        return STTGstVosk()
+
     def new_engine(self):
         engine=None if self._current_engine is None else self._current_engine()
         if engine is None:
             LOG_MSG.debug("new engine")
-            engine=STTGstVosk()
+            engine=self._create_engine()
             self._current_engine=weakref.ref(engine)
         else:
             engine.hold()
