@@ -7,15 +7,17 @@ Description
 This Input Method uses VOSK (https://github.com/alphacep/VOSK-api) or Whisper (via faster-whisper) for voice recognition and allows to dictate text in several languages in any application that supports IBus.
 One of the main advantages is that both backends perform voice recognition locally and do not rely on an online service.
 
-It works on Wayland and likely Xorg, though it has not been tested with the latter.
+It works on Wayland (including KDE Plasma) and likely Xorg, though it has not been tested with the latter.
 
 Since it uses IBus, it should work with most if not all applications since most modern toolkits (GTK, QT) all support IBus.
 
-It has been tested with French, English and Spanish but it should support all languages for which a voice recognition model is available on this page : https://alphacephei.com/VOSK/models
+It has been tested with French, English and Spanish but it should support all languages for which a voice recognition model is available:
+- VOSK models: https://alphacephei.com/VOSK/models
+- Whisper models: downloaded automatically from Hugging Face (supports 99+ languages)
 
-Note: you do not need to install the model manually, the setup tool can do it for you and lets you choose the model you want for your language (larger models tend to be more accurate of course but can require a lot of memory).
+Note: you do not need to install the model manually. For VOSK, the setup tool can do it for you. For Whisper, the model is downloaded automatically on first use.
 
-When there is a formatting file provided, IBus STT auto-formats the text that VOSK outputs (mainly adding spaces and capital letters when needed). Currently, such a file is provided for French, American English and Spanish (es_ES) but you can send me a new file for your language so I can integrate it (see the examples in data/formatting in the tree).
+When there is a formatting file provided, IBus STT auto-formats the text that the recognition engine outputs (mainly adding spaces and capital letters when needed). Currently, such a file is provided for French, American English and Spanish (es_ES) but you can send me a new file for your language so I can integrate it (see the examples in data/formatting in the tree).
 
 This file also adds support for voice commands to manage case, punctuation and diacritics.
 For example, saying "capital letter california" yields "California" as a result and "comma" adds ",".
@@ -63,13 +65,27 @@ To install it in /usr (where most distributions install IBus):
   meson install
 ```
 
+After installing, compile the GSettings schemas:
+```
+  sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+```
+
 Usage
 ============
 
 Activate the Input Method through the IBus menu (that depends on your desktop) and start speaking.
 It might seem obvious but the quality of the microphone used largely influences the accuracy of the voice recognition.
 
-This Input Method can also be enabled and disabled with the default shorcut ("Win + Space") used to switch between IBus Input Methods. By default, when IBus STT is enabled, voice recognition is not started immediately but there is a setting to change this behaviour. If enabled, you can start and stop voice recognition with the above shortcut.
+This Input Method can also be enabled and disabled with the default shortcut (Ctrl+Space) used to switch between IBus Input Methods. By default, when IBus STT is enabled, voice recognition is not started immediately but there is a setting to change this behaviour. If enabled, you can start and stop voice recognition with the above shortcut.
+
+### KDE Plasma (Wayland)
+
+To use IBus on KDE Plasma with Wayland:
+
+1. Make sure `QT_IM_MODULE` and `GTK_IM_MODULE` environment variables are **not** set
+2. Open System Settings > Input & Output > Keyboard > Virtual Keyboard
+3. Select **IBus Wayland** and click Apply
+4. Activate the STT engine: `ibus engine stt`
 
 Choosing a backend
 ============
@@ -85,9 +101,22 @@ To switch back to VOSK:
   gsettings set org.freedesktop.ibus.engine.stt stt-backend 'vosk'
 ```
 
-You can also choose the Whisper model size (tiny, base, small, medium, large-v2, large-v3). Larger models are more accurate but require more memory and processing time:
+### Whisper model sizes
+
+You can choose the Whisper model size. Larger models are more accurate but require more memory and processing time:
+
+| Model | Parameters | RAM (approx.) | Accuracy |
+|-------|-----------|---------------|----------|
+| tiny | 39M | ~150MB | Low |
+| base | 74M | ~300MB | Medium |
+| **small** (default) | 244M | ~1GB | **Good** |
+| medium | 769M | ~3GB | Very good |
+| large-v2 | 1550M | ~6GB | Best |
+| large-v3 | 1550M | ~6GB | Best |
+
+To change the model size:
 ```
-  gsettings set org.freedesktop.ibus.engine.stt whisper-model-size 'base'
+  gsettings set org.freedesktop.ibus.engine.stt whisper-model-size 'small'
 ```
 
-Note: after changing the backend or model size, you need to restart IBus (`ibus restart`) for the change to take effect. The Whisper model is downloaded automatically on first use.
+Note: after changing the backend or model size, restart IBus (`ibus restart`) or re-activate the engine (`ibus engine stt`) for the change to take effect. The Whisper model is downloaded automatically on first use.

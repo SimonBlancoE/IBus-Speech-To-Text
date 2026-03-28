@@ -48,7 +48,7 @@
     </key>
     <key type="s" name="whisper-model-size">
       <summary>Whisper model size</summary>
-      <default>'base'</default>
+      <default>'small'</default>
       <description>The Whisper model size to use. Possible values are 'tiny', 'base', 'small', 'medium', 'large-v2', 'large-v3'. Larger models are more accurate but require more memory and processing time. Only used when stt-backend is set to 'whisper'.</description>
     </key>
   </schema>

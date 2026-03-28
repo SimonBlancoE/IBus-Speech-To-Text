@@ -119,7 +119,7 @@ class STTGstWhisper(STTGstBase):
     def _get_model_size(self):
         model_size = self._settings.get_string("whisper-model-size")
         if model_size in (None, "", "None"):
-            return "base"
+            return "small"
         return model_size
 
     def _load_model(self):
